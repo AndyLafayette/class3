@@ -9,7 +9,7 @@ extends Reducer<Text, Text, Text, Text> {
 public void reduce(Text key, Iterable<Text> values, Context context)
 throws IOException, InterruptedException {
 int PR = 0; 
-String val; 
+String val = null; 
 for (Text value : values) {
 String temp = value.toString();
 if (temp.charAt(temp.length() - 1) < '0' || temp.charAt(temp.length() - 1) > '9') {
