@@ -10,13 +10,13 @@ public class PageRankMapper
 public void map(LongWritable key, Text value, Context context)
 throws IOException, InterruptedException {
 String line = value.toString();
-String[] strs = line.split(' ');
+String[] strs = line.split(" ");
 int length = strs.length();
 int outlinks = length - 2;
-double PR = Integer.valueOf(strs[length - 1]); 
+double PR = Double.valueOf(strs[length - 1]); 
 for (int i = 0; i < outlinks; i++) {
 	context.write(new Text(strs[1 + i]), new Text(strs[0] + " " + PR/outlinks));
 }
-context.write(new Text(line[0]), new Text(line.substring(2, 3+(outlinks-1)*2)));
+context.write(new Text(line.charAt(0)), new Text(line.substring(2, 3+(outlinks-1)*2)));
 }
 }
