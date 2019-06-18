@@ -33,6 +33,7 @@ job2.setMapperClass(PageRankMapper.class);
 job2.setReducerClass(PageRankReducer.class);
 job2.setOutputKeyClass(Text.class);
 job2.setOutputValueClass(Text.class);
+job2.waitForCompletion(true);
 //MR3
 Job job3 = new Job();
 job3.setNumReduceTasks(1);
