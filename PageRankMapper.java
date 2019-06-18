@@ -10,7 +10,7 @@ public class PageRankMapper
 public void map(LongWritable key, Text value, Context context)
 throws IOException, InterruptedException {
 String line = value.toString();
-String[] strs = line.split(" ");
+String[] strs = line.split("\\s+");
 int length = strs.length;
 int outlinks = length - 2;
 double PR = Double.valueOf(strs[length - 1]); 
