@@ -17,7 +17,7 @@ double PR = Double.valueOf(strs[length - 1]);
 for (int i = 0; i < outlinks; i++) {
 	context.write(new Text(strs[1 + i]), new Text(strs[0] + " " + PR/outlinks));
 }
-StringBuilder sb;
+StringBuilder sb = new StringBuilder();
 for (int i = 1 ; i < strs.length - 1; i++) {
 	sb.append(strs[i]);
 	sb.append(" ");
