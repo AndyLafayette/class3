@@ -11,10 +11,28 @@ System.err.println("Usage: PageRank <input path> <output path>");
 System.exit(-1);
 }
 Job job = new Job();
+job.setNumberReducetASK(1);
 job.setJarByClass(PageRank.class);
-job.setJobName("Page Rank");
+//MR1
+job.setJobName("Page Rank 1");
 FileInputFormat.addInputPath(job, new Path(args[0]));
-FileOutputFormat.setOutputPath(job, new Path(args[1]));
+FileOutputFormat.setOutputPath(job, new Path(args[1] + "_1"));
+job.setMapperClass(PageRankMapper.class);
+job.setReducerClass(PageRankReducer.class);
+job.setOutputKeyClass(Text.class);
+job.setOutputValueClass(Text.class);
+//MR2
+job.setJobName("Page Rank 2");
+FileInputFormat.addInputPath(job, new Path(args[1] + "_1/part-r-00000"));
+FileOutputFormat.setOutputPath(job, new Path(args[1] + "_2"));
+job.setMapperClass(PageRankMapper.class);
+job.setReducerClass(PageRankReducer.class);
+job.setOutputKeyClass(Text.class);
+job.setOutputValueClass(Text.class);
+//MR1
+job.setJobName("Page Rank 1");
+FileInputFormat.addInputPath(job, new Path(args[1] + "_2/part-r-00000"));
+FileOutputFormat.setOutputPath(job, new Path(args[1]  + "_3"));
 job.setMapperClass(PageRankMapper.class);
 job.setReducerClass(PageRankReducer.class);
 job.setOutputKeyClass(Text.class);
