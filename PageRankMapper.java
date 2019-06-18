@@ -18,7 +18,7 @@ for (int i = 0; i < outlinks; i++) {
 	context.write(new Text(strs[1 + i]), new Text(strs[0] + " " + PR/outlinks));
 }
 StringBuilder sb;
-for (int i = 1 ; i < strs.length() - 1; i++) {
+for (int i = 1 ; i < strs.length - 1; i++) {
 	sb.append(strs[i]);
 	sb.append(" ");
 }
