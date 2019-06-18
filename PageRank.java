@@ -11,7 +11,7 @@ System.err.println("Usage: PageRank <input path> <output path>");
 System.exit(-1);
 }
 Job job = new Job();
-job.setNumberReducetASK(1);
+job.setNumReduceTasks(1);
 job.setJarByClass(PageRank.class);
 //MR1
 job.setJobName("Page Rank 1");
