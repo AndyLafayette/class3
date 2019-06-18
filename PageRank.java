@@ -10,33 +10,40 @@ if (args.length != 2) {
 System.err.println("Usage: PageRank <input path> <output path>");
 System.exit(-1);
 }
-Job job = new Job();
-job.setNumReduceTasks(1);
-job.setJarByClass(PageRank.class);
 //MR1
-job.setJobName("Page Rank 1");
-FileInputFormat.addInputPath(job, new Path(args[0]));
-FileOutputFormat.setOutputPath(job, new Path(args[1] + "_1"));
-job.setMapperClass(PageRankMapper.class);
-job.setReducerClass(PageRankReducer.class);
-job.setOutputKeyClass(Text.class);
-job.setOutputValueClass(Text.class);
+Job job1 = new Job();
+job1.setNumReduceTasks(1);
+job1.setJarByClass(PageRank.class);
+job1.setJobName("Page Rank 1");
+FileInputFormat.addInputPath(job1, new Path(args[0]));
+FileOutputFormat.setOutputPath(job1, new Path(args[1] + "_1"));
+job1.setMapperClass(PageRankMapper.class);
+job1.setReducerClass(PageRankReducer.class);
+job1.setOutputKeyClass(Text.class);
+job1.setOutputValueClass(Text.class);
+job1.waitForCompletion(true);
 //MR2
-//job.setJobName("Page Rank 2");
-//FileInputFormat.addInputPath(job, new Path(args[1] + "_1/part-r-00000"));
-//FileOutputFormat.setOutputPath(job, new Path(args[1] + "_2"));
-//job.setMapperClass(PageRankMapper.class);
-//job.setReducerClass(PageRankReducer.class);
-//job.setOutputKeyClass(Text.class);
-//job.setOutputValueClass(Text.class);
-//MR1
-//job.setJobName("Page Rank 3");
-//FileInputFormat.addInputPath(job, new Path(args[1] + "_2/part-r-00000"));
-//FileOutputFormat.setOutputPath(job, new Path(args[1]  + "_3"));
-//job.setMapperClass(PageRankMapper.class);
-//job.setReducerClass(PageRankReducer.class);
-//job.setOutputKeyClass(Text.class);
-//job.setOutputValueClass(Text.class);
-System.exit(job.waitForCompletion(true) ? 0 : 1);
+Job job2 = new Job();
+job2.setNumReduceTasks(1);
+job2.setJarByClass(PageRank.class);
+job2.setJobName("Page Rank 2");
+FileInputFormat.addInputPath(job2, new Path(args[1] + "_1/part-r-00000"));
+FileOutputFormat.setOutputPath(job2, new Path(args[1] + "_2"));
+job2.setMapperClass(PageRankMapper.class);
+job2.setReducerClass(PageRankReducer.class);
+job2.setOutputKeyClass(Text.class);
+job2.setOutputValueClass(Text.class);
+//MR3
+Job job3 = new Job();
+job3.setNumReduceTasks(1);
+job3.setJarByClass(PageRank.class);
+job3.setJobName("Page Rank 3");
+FileInputFormat.addInputPath(job3, new Path(args[1] + "_2/part-r-00000"));
+FileOutputFormat.setOutputPath(job3, new Path(args[1]  + "_3"));
+job3.setMapperClass(PageRankMapper.class);
+job3.setReducerClass(PageRankReducer.class);
+job3.setOutputKeyClass(Text.class);
+job3.setOutputValueClass(Text.class);
+System.exit(job3.waitForCompletion(true) ? 0 : 1);
 }
 }
