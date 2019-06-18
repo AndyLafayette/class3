@@ -22,21 +22,21 @@ job.setReducerClass(PageRankReducer.class);
 job.setOutputKeyClass(Text.class);
 job.setOutputValueClass(Text.class);
 //MR2
-job.setJobName("Page Rank 2");
-FileInputFormat.addInputPath(job, new Path(args[1] + "_1/part-r-00000"));
-FileOutputFormat.setOutputPath(job, new Path(args[1] + "_2"));
-job.setMapperClass(PageRankMapper.class);
-job.setReducerClass(PageRankReducer.class);
-job.setOutputKeyClass(Text.class);
-job.setOutputValueClass(Text.class);
+//job.setJobName("Page Rank 2");
+//FileInputFormat.addInputPath(job, new Path(args[1] + "_1/part-r-00000"));
+//FileOutputFormat.setOutputPath(job, new Path(args[1] + "_2"));
+//job.setMapperClass(PageRankMapper.class);
+//job.setReducerClass(PageRankReducer.class);
+//job.setOutputKeyClass(Text.class);
+//job.setOutputValueClass(Text.class);
 //MR1
-job.setJobName("Page Rank 1");
-FileInputFormat.addInputPath(job, new Path(args[1] + "_2/part-r-00000"));
-FileOutputFormat.setOutputPath(job, new Path(args[1]  + "_3"));
-job.setMapperClass(PageRankMapper.class);
-job.setReducerClass(PageRankReducer.class);
-job.setOutputKeyClass(Text.class);
-job.setOutputValueClass(Text.class);
+//job.setJobName("Page Rank 3");
+//FileInputFormat.addInputPath(job, new Path(args[1] + "_2/part-r-00000"));
+//FileOutputFormat.setOutputPath(job, new Path(args[1]  + "_3"));
+//job.setMapperClass(PageRankMapper.class);
+//job.setReducerClass(PageRankReducer.class);
+//job.setOutputKeyClass(Text.class);
+//job.setOutputValueClass(Text.class);
 System.exit(job.waitForCompletion(true) ? 0 : 1);
 }
 }
